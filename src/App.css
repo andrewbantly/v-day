@@ -1,42 +1,153 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+.valentine-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 2rem;
+  box-sizing: border-box;
+  background: linear-gradient(160deg, #1a0a0e 0%, #2d1b2e 35%, #1a0a0e 100%);
+  color: #ffe4ec;
+  position: relative;
+  overflow: hidden;
+}
+
+.valentine-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 120%, rgba(255, 105, 135, 0.12) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.start-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+  cursor: pointer;
+}
+
+.start-overlay p {
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.question {
+  font-family: 'Comic Relief', system-ui, -apple-system, sans-serif;
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-weight: 400;
   text-align: center;
+  margin: 0 0 2.5rem;
+  text-shadow: 0 0 40px rgba(255, 105, 135, 0.3);
+  position: relative;
+  z-index: 1;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.buttons {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.btn {
+  padding: 0.75rem 1.75rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(233, 30, 99, 0.4);
+}
+
+.btn-yes:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 28px rgba(233, 30, 99, 0.5);
+}
+
+.btn-no {
+  background: linear-gradient(135deg, #4a4a4a 0%, #333 100%);
+  color: #e0e0e0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease;
+}
+
+.btn-no:hover {
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+}
+
+.celebration {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.celebration-title {
+  font-family: 'Comic Relief', system-ui, -apple-system, sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 400;
+  margin: 0 0 0.5rem;
+  color: #ffb6c1;
+}
+
+.celebration-sub {
+  font-family: 'Comic Relief', system-ui, -apple-system, sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  opacity: 0.95;
+  margin: 0;
+}
+
+.hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heart-float {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: float-up 4s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.3s);
+  left: calc(var(--i) * 8.33%);
+  bottom: -2rem;
+  opacity: 0.85;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
   }
-  to {
-    transform: rotate(360deg);
+  10% {
+    opacity: 0.85;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  90% {
+    opacity: 0.85;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  100% {
+    transform: translateY(-100vh) scale(1.2);
+    opacity: 0;
+  }
 }
