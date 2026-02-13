@@ -8,6 +8,11 @@ const WOBBLE = 0.22
 const LERP = 0.2
 
 function App() {
+  const [name] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('v') || '';
+  });
+
   const [saidYes, setSaidYes] = useState(false)
   const [noButtonPos, setNoButtonPos] = useState({ x: 0, y: 0 })
   const containerRef = useRef(null)
@@ -93,7 +98,7 @@ function App() {
         </div>
       ) : (
         <>
-          <h1 className="question">Will you be my Valentine?</h1>
+        {name ? <h1 className="question">Will you be my Valentine, {name}?</h1> : <h1 className="question">Will you be my Valentine?</h1>}
           <div className="buttons">
             <button
               type="button"
