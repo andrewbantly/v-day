@@ -10,10 +10,9 @@ const LERP = 0.2
 function App() {
   const [name] = useState(() => {
     const params = new URLSearchParams(window.location.search);
-    const name = params.get('v') ?? '';
-    if (name.trim()) return name;
-    const cleanedNAme = name[0].toUpperCase() + name.slice(1).toLowerCase();
-    return cleanedNAme;
+    const raw = params.get('v') ?? '';
+    if (!raw.trim()) return '';
+    return raw[0].toUpperCase() + raw.slice(1).toLowerCase();
   });
 
   const [saidYes, setSaidYes] = useState(false)
