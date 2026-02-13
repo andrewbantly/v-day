@@ -10,7 +10,10 @@ const LERP = 0.2
 function App() {
   const [name] = useState(() => {
     const params = new URLSearchParams(window.location.search);
-    return params.get('v') || '';
+    const name = params.get('v') ?? '';
+    if (name.trim()) return name;
+    const cleanedNAme = name[0].toUpperCase() + name.slice(1).toLowerCase();
+    return cleanedNAme;
   });
 
   const [saidYes, setSaidYes] = useState(false)
@@ -98,7 +101,7 @@ function App() {
         </div>
       ) : (
         <>
-        {name ? <h1 className="question">Will you be my Valentine, {name}?</h1> : <h1 className="question">Will you be my Valentine?</h1>}
+        {name ? <h1 className="question">{name}, will you be my Valentine?</h1> : <h1 className="question">Will you be my Valentine?</h1>}
           <div className="buttons">
             <button
               type="button"
